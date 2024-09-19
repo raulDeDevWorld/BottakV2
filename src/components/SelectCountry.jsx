@@ -60,7 +60,7 @@ export default function App({ propIsSelect, propHandlerIsSelect, operation, clic
 
         </div>
     );
-}
+}       
 
 // --------------------------------IMPORTANTE-----------------------
 
