@@ -127,7 +127,7 @@ function Page() {
     destinatario !== undefined && setDestinatario(undefined)
     transactionDB !== undefined && setTransactionDB(undefined)
   }, [destinatario, transactionDB])
-  console.log(userDB)
+  // console.log(userDB)
   console.log(countries)
   return (
     <>
@@ -140,7 +140,7 @@ function Page() {
       {modal === 'registrate' && <ModalINFO theme={'Danger'} alert={false} button="Iniciar Sesión" funcion={() => handlerRedirect('/Login')} >Inicia Sesión para continuar con tu transacción</ModalINFO>}
       <NavInit mobile={true} />
       <div className={`flex flex-col justify-center items-center h-[300px] lg:h-auto lg:hidden `}>
-        <img src="/logo.svg" className={`h-[180px] w-[180px] ${style.logo}`} alt="User" />
+        <img src="/logo.svg" className={`h-[150px] w-[150px] ${style.logo}`} alt="User" />
         <h1 className='text-[#FFF500] text-[14px] font-light'>Cambios App</h1>
         <h3 className='text-white text-[14px] font-light'>Tus transferencias mas faciles y seguras</h3>
         <br />
@@ -152,7 +152,7 @@ function Page() {
 
       {/* FORM TRANSFERENCIA */}
       {modalInfo === false
-        ? <form className='lg:h-full lg:py-[30px] w-full h-[370px] flex flex-col justify-between items-center  ' onSubmit={handlerTransfer}>
+        ? <form className='lg:h-full lg:py-[30px] w-full h-[400px] flex flex-col justify-between items-center  ' onSubmit={handlerTransfer}>
           
           <NavInit mobile={false} />
           <marquee behavior="" direction="" className='max-w-[370px] text-green-500'>{
@@ -160,11 +160,11 @@ function Page() {
               ? countries[userDB.cca3].recepcion === true && countries[userDB.cca3].envio === true
                 ? `Estas transaccionando desde ${userDB.pais}`
                 : (countries[userDB.cca3].recepcion === true || countries[userDB.cca3].envio === true)
-                  ? <p className='text-red-500 font-semibold'>Tu pais solo puede {countries[userDB.cca3].recepcion === true ? 'recepcionar' : 'enviar'} divisas</p>
-                  : 'Tu pais no esta habilitado para transaccionar'
+                  ? <p className='text-red-500 font-semibold'>{userDB.pais} solo puede {countries[userDB.cca3].recepcion === true ? 'recepcionar' : 'enviar'} divisas</p>
+                  : `${userDB.pais} no esta habilitado para transaccionar`
               : <p className='text-red-500 font-semibold'>Registrate para transaccionar</p>}
           </marquee>
-          <h3 className='text-[14px] text-[#FFF500]'>Divisa de remitente</h3>
+          <h3 className='text-[14px] text-[#FFF500]'>Divisa de remitente disponibles</h3>
           <SelectWithFlag onChange="Transference" placeholder='Monto a transferir' propHandlerSelect={handlerSelect} propSelect={select} propHandlerIsSelect={handlerIsSelect} propIsSelect={isSelect} defaultValue={transferencia} />
           <span className='text-[#FFF500] text-[14px]'>Divisa de receptor:</span>
           <SelectWithFlag value={true} propHandlerSelect={handlerSelect2} propSelect={select2} propHandlerIsSelect={handlerIsSelect2} propIsSelect={isSelect2} />
